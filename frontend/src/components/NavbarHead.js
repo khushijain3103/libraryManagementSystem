@@ -12,14 +12,20 @@ import {
   SearchBox,
   RightContainer,
   BrandLogo,
-  LoginLink
+  LoginLink, 
+  Button
 } from './Styles';
+import { useAuth0 } from '@auth0/auth0-react';
+import Borrow from '../pages/borrow_books';
 
 const NavbarHead = () => {
+
   
+  const { user, isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState('');
   const [searchResults, setSearchResults] = useState(null);
+  const [showBorrow, setShowBorrow] = useState(false);
 
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
@@ -57,12 +63,16 @@ const NavbarHead = () => {
   };
 
   return (
+    <>
     <div>
       <GlobalStyle />
       <Navbar>
         <NavLinks>
           <NavItem>
-            <LoginLink href="/login">Login</LoginLink>
+            {/* <LoginLink href="/login">Login</LoginLink> */}
+            {isAuthenticated ? <Button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} style={{ "padding": "10px", "margin-top": "-12px"}} type="submit">Log Out</Button> : 
+          <Button onClick={() => loginWithRedirect()} style={{ "padding": "10px", "margin-top": "-12px"}} type="submit">Login</Button>
+          }
           </NavItem>
           <NavItem>
             <NavLink href="/">Home</NavLink>
@@ -71,7 +81,12 @@ const NavbarHead = () => {
             <NavLink href="/viewbooks">View Books</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/borrowbooks">Borrow Books</NavLink>
+            {/* <NavLink href="/borrowbooks">Borrow Books</NavLink> */}
+            {/* <Borrow></Borrow> */}
+            <Button onClick={() => {setShowBorrow(true)}}>Borrowed Books </Button>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/cart">View Cart</NavLink>
           </NavItem>
         </NavLinks>
         <RightContainer>
@@ -90,13 +105,16 @@ const NavbarHead = () => {
         </form>
 
         </RightContainer>
-        <RightContainer style={{ marginLeft: '20px' }}>
+        { isAuthenticated && <RightContainer style={{ marginLeft: '20px' }}>
           <BrandLogo src="logo.png" alt="Library Management System Logo" />
-        </RightContainer>
+          <p>{user.email}</p>
+        </RightContainer>}
       </Navbar>
       {searchResults && <ViewSearchResults searchResults={searchResults} />}
 
     </div>
+    {showBorrow && <Borrow></Borrow> }
+    </>
   );
 };
 
