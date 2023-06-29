@@ -57,10 +57,8 @@ const NavbarHead = () => {
   };
 
   const display = () => {
-    
-   
-    setShowBorrow((prev) => !prev)
-  }
+    setShowBorrow((prev) => !prev);
+  };
 
   console.log(showBorrow);
 
@@ -71,44 +69,20 @@ const NavbarHead = () => {
         <Navbar>
           <NavLinks>
             <NavItem>
-              {/* <LoginLink href="/login">Login</LoginLink> */}
-              {isAuthenticated ? (
-                <Button
-                  onClick={() =>
-                    logout({
-                      logoutParams: { returnTo: window.location.origin },
-                    })
-                  }
-                  // style={{ padding: "10px", "margin-top": "-12px" }}
-                  type="submit"
-                >
-                  Log Out
-                </Button>
-              ) : (
-                <Button
-                  onClick={() => loginWithRedirect()}
-                  // style={{ padding: "10px", "margin-top": "-12px" }}
-                  type="submit"
-                >
-                  Login
-                </Button>
-              )}
+              <NavLink href="/">
+                <Button>Home</Button>
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/">Home</NavLink>
+              <NavLink href="/viewbooks">
+                <Button>View Books</Button>
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/viewbooks">View Books</NavLink>
-            </NavItem>
-            <NavItem>
-              <Button
-                onClick={display}
-                type="submit"
-              >
+              <Button onClick={display} type="submit">
                 Borrowed Books
               </Button>
             </NavItem>
-    
           </NavLinks>
           <RightContainer>
             <form onSubmit={handleSearch}>
@@ -123,11 +97,33 @@ const NavbarHead = () => {
             </form>
           </RightContainer>
           {isAuthenticated && (
-            <RightContainer style={{ marginLeft: "20px" }}>
+            <RightContainer style={{ marginLeft: "20px", marginRight: "20px" ,color:"white"}}>
               <BrandLogo src="logo.jpg" alt="Library Management System Logo" />
               <p>{user.email}</p>
             </RightContainer>
           )}
+          <NavItem>
+            {/* <LoginLink href="/login">Login</LoginLink> */}
+            {isAuthenticated ? (
+              <Button
+                onClick={() =>
+                  logout({
+                    logoutParams: { returnTo: window.location.origin },
+                  })
+                }
+                // style={{ padding: "10px", "margin-top": "-12px" }}
+                type="submit">
+                Log Out
+              </Button>
+            ) : (
+              <Button
+                onClick={() => loginWithRedirect()}
+                // style={{ padding: "10px", "margin-top": "-12px" }}
+                type="submit">
+                Login
+              </Button>
+            )}
+          </NavItem>
         </Navbar>
         {searchResults && <ViewSearchResults searchResults={searchResults} />}
       </div>
