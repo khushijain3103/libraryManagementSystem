@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import CardComponent from "./Card";
 
 // import book1 from "../images/books.jpg";
 
@@ -158,16 +159,24 @@ const Books = () => {
 
       <BooksViewList>
         {currentBooks?.map((book) => (
-          <BookCard key={book.id}>
-            {/* <BookImage src={book1} alt={book.title} /> */}
-            <BookBody>
-              <BookName>{book.title}</BookName>
-              <BookDescription>By {book.author}</BookDescription>
-              <BookDescription>
-                Release Date: {book.releasedate}
-              </BookDescription>
-            </BookBody>
-          </BookCard>
+          // <BookCard key={book.id}>
+          //   {/* <BookImage src={book1} alt={book.title} /> */}
+          //   <BookBody>
+          //     <BookName>{book.title}</BookName>
+          //     <BookDescription>By {book.author}</BookDescription>
+          //     <BookDescription>
+          //       Release Date: {book.releasedate}
+          //     </BookDescription>
+          //   </BookBody>
+          // </BookCard>
+          <CardComponent
+              title={book.title}
+              desc={book.subject}
+              author={book.author}
+              release={book.releasedate}
+              img={book.image}
+              id={book.id}
+            ></CardComponent>
         ))}
       </BooksViewList>
 

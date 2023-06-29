@@ -3,6 +3,7 @@ import {
   FooterHeadText,
 
 } from './Styles';
+import githublogo from "../images/githublogo.png";
 
 const FooterBottom = () => {
     return (
@@ -10,6 +11,7 @@ const FooterBottom = () => {
         <FooterHeadContainer>
             <FooterHeadText>
                 &copy; {new Date().getFullYear()} Copyright:{' '}
+                {/* <img src={githublogo}/> */}
                 Library Management System
             </FooterHeadText>
         </FooterHeadContainer>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 import addbutton from "../images/add.png";
+import bookpho from "../images/bookpho.jpeg"
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -111,6 +112,12 @@ export const FooterHeadText = styled.p`
   font-size: 14px;
   font-weight: 500;
   text-align: center;
+  
+  img {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
 `;
 
 export const PageContainer = styled.div`
@@ -127,7 +134,7 @@ export const ContentContainer = styled.div`
 
 export const HeadTitle = styled.h1`
   padding-left: 50px;
-  color: #371B58;
+  color: #324554;
   text-align: center;
   text-transform: capitalize;
   margin-top: 80px;
@@ -186,12 +193,13 @@ export const CardContainer = styled.div`
 export const Card = styled.div`
   position: relative;
   min-width: 150px;
-  width: 150px;
+  width: 25%;
   height: 200px;
   border-radius: 5px;
   overflow: hidden;
   margin-right: 10px;
   transition: 0.5s;
+  margin-bottom: 0;
 
   &:hover {
     transform: scale(1.1);
@@ -213,6 +221,7 @@ color: #29A0B1 ;
 export const BooksViewList = styled.div`
 display: flex;
 flex-wrap: wrap;
+justify-content: space-around;
 `;
 
 export const BookDescription = styled.p`
@@ -249,10 +258,16 @@ export const CardBody = styled.div`
   background: linear-gradient(to bottom, rgba(4, 8, 15, 0), #98D7C2 90%);
   padding: 10px;
   transition: 0.5s;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  // background-image: url(${bookpho});
+  // background-position: center; 
+  justify-content: flex-end;
 
-  ${Card}:hover & {
-    opacity: 1;
-  }
+  // ${Card}:hover & {
+  //   opacity: 1;
+  // }
 `;
 
 export const CardName = styled.p`
@@ -260,7 +275,7 @@ export const CardName = styled.p`
   font-size: 15px;
   font-weight: bold;
   text-transform: capitalize;
-  margin-top: 60%;
+  margin-top: 20%;
 `;
 
 export const CardDescription = styled.p`
@@ -338,6 +353,8 @@ export const BorrowListButton = styled.button`
   cursor: pointer;
   padding: 10px 5px;
   border-radius: 5px;
+  // bottom: 0;
+  align-self: end;
 
   &:before {
     content: "";
@@ -353,7 +370,7 @@ export const BorrowListButton = styled.button`
   }
 
   &:hover {
-    color: #fff;
+    color: green;
     background: rgba(255, 255, 255, 0.1);
   }
 
@@ -366,7 +383,7 @@ export const BorrowListButton = styled.button`
 export const PreviousButton = styled.button`
   position: absolute;
   top: 0;
-  width: 5%;
+  width: 3%;
   height: 100%;
   z-index: 2;
   border: none;
@@ -375,14 +392,15 @@ export const PreviousButton = styled.button`
   left: 0;
   background: #98D7C2;
   opacity:0.5;
+  corner-radius: 50%;
 
   img {
     width: 15px;
     height: 20px;
-    opacity: 0;
+    opacity: 1;
   }
 
-  &:hover img {
+  &:hover {
     opacity: 1;
   }
 `;
@@ -390,7 +408,7 @@ export const PreviousButton = styled.button`
 export const NextButton = styled.button`
   position: absolute;
   top: 0;
-  width: 5%;
+  width: 3%;
   height: 100%;
   z-index: 2;
   border: none;
@@ -403,10 +421,10 @@ export const NextButton = styled.button`
   img {
     width: 15px;
     height: 20px;
-    opacity: 0;
+    opacity: 1;
   }
 
-  &:hover img {
+  &:hover{
     opacity: 1;
   }
 `;
