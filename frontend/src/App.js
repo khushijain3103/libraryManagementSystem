@@ -1,28 +1,31 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-//pages
-import Home from './pages/home';
-import Login from './pages/user_login';
-import Signup from './pages/user_signup';
-import ViewBooks from './pages/ViewBooks';
-import Borrow from './pages/borrow_books';
-import SearchPage from './pages/search_page';
+import {
+  // BrowserRouter as Router,
+  Routes,
+  Route,
+  BrowserRouter,
+} from "react-router-dom";
+import Home from "./pages/home";
+import Signup from "./pages/user_signup";
+import ViewBooks from "./pages/ViewBooks";
+import Borrow from "./pages/borrow_books";
+import SearchPage from "./pages/search_page";
+import BookState from "./context/borrowState";
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/viewbooks" element={<ViewBooks />} />
-          <Route path="/searchpage" element={<SearchPage />} />
-          <Route path="/borrowbooks" element={<Borrow />} />
-        </Routes>
-      </Router>
-
-    </div>
+    <BookState>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/signup" element={<Signup />} />
+            <Route exact path="/viewbooks" element={<ViewBooks />} />
+            <Route exact path="/searchpage" element={<SearchPage />} />
+            <Route exact path="/borrowbooks" element={<Borrow />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </BookState>
   );
 }
 
